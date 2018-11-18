@@ -1,79 +1,99 @@
-import React from 'react';
-import { StyleSheet, Text, View, Button, TouchableOpacity, ScrollView, Image } from 'react-native';
+import React, { Component } from 'react';
+import {
+	AppRegistry,
+	StyleSheet,
+	Text,
+	View,
+	TouchableOpacity,
+	Dimensions,
+	Button
+} from 'react-native';
 import MapView from 'react-native-maps';
 
+const { width, height } = Dimensions.get('window');
 
-export const getCurrentLocation = () => {
-    return new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(position => resolve(position), e => reject(e));
-    });
-  };
-
-class LocationScreen extends React.Component {
+export default class TestProject2 extends Component {
     static navigationOptions = {
-        title: 'Locaiton',
-    };
-    constructor(props) {
-        super(props);
-        this.state = {
-          region: {
-              latitude: 55.676098,
-              longitude: 12.568337,
-              latitudeDelta: 0.1,
-              longitudeDelta: 0.1
-          },
-        };
-      }
+        title: 'Location',
+      };
+	constructor(props) {
+		super(props);
+		this.state = {
+			statusBarHeight: 400
+		}
+	}
 
-    componentDidMount() {
-        return getCurrentLocation().then(position => {
-          if (position) {
-            this.setState({
-              region: {
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-                latitudeDelta: 0.003,
-                longitudeDelta: 0.003,
-              },
-            });
-          }
-        });
-    }
-
-    render() {
-        return (
+	componentWillMount() {
+		setTimeout(() => this.setState({ hackHeight: height }), 500);
+		setTimeout(() => this.setState({ hackHeight: height - 300 }), 1000);
+	}
+	render() {
+		return (
             <View style={styles.container}>
-            <Text>Hej</Text>
-                <MapView style={styles.map}
-                    region={this.state.region}
-                    showsUserLocation={true} 
-                    showsMyLocationButton={true}
-                >
+                <View style={{ paddingBottom: this.state.hackHeight }}>
+				<MapView style={styles.map}
+					provider="google"
+					showsUserLocation={true}
+					showsMyLocationButton={true}
+					showsCompass={true}
+					followsUserLocation={true}
+					loadingEnabled={true}
+					toolbarEnabled={true}
+					zoomEnabled={true}
+					rotateEnabled={true}
+					zoomControlEnabled={true}
 
-                </MapView>
+					initialRegion={{
+						latitude: 37.78825,
+						longitude: -122.4324,
+						latitudeDelta: 0.0922,
+						longitudeDelta: 0.0421,
+					}}
+				/>
+				<TouchableOpacity >
+					<View style={styles.listItem}>
+						<Text style={styles.name}>Next</Text>
+					</View>
+				</TouchableOpacity>
+			</View>
             </View>
-                
-        );
-    }
+			
+		);
+	};
 }
 
-
 const styles = StyleSheet.create({
-    container: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        justifyContent: 'flex-end',
-        alignItems: 'center'
+	container: {
+        backgroundColor: '#fff',
+	},
+	map: {
+		height: 200
+	},
+	welcome: {
+		fontSize: 20,
+		textAlign: 'center',
+		margin: 10,
+	},
+	instructions: {
+		textAlign: 'center',
+		color: '#333333',
+		marginBottom: 5,
+	},
+	name: {
+		textAlign: "center",
+		color: '#666',
+		fontWeight: 'bold',
+		fontSize: 20
     },
-    map: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0
-    }
+    listItem: {
+        marginTop:10,
+        paddingTop:15,
+        paddingBottom:15,
+        marginLeft:30,
+        marginRight:30,
+        backgroundColor:'#EEEEEE',
+        borderRadius:20,
+        borderWidth: 1,
+        borderColor: '#fff'
+      },
 });
-export default LocationScreen;

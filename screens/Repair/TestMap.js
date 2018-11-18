@@ -1,28 +1,32 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
+	AppRegistry,
+	StyleSheet,
+	Text,
+	View,
+	TouchableOpacity,
+	Dimensions,
+	Button
 } from 'react-native';
 import MapView from 'react-native-maps';
 
-export default class TestProject2 extends Component {
-    constructor(props)
-    {
-        super(props);
-        this.state = {
-            statusBarHeight: 400
-        }
-    }
+const { width, height } = Dimensions.get('window');
 
-    componentWillMount() {
-        //Hack to ensure the showsMyLocationButton is shown initially. Idea is to force a repaint
-       setTimeout(()=>this.setState({statusBarHeight: 300}), 500);
-    }
+export default class TestProject2 extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			statusBarHeight: 400
+		}
+	}
+
+	componentWillMount() {
+		setTimeout(() => this.setState({ hackHeight: height }), 500);
+		setTimeout(() => this.setState({ hackHeight: height - 300 }), 1000);
+	}
 	render() {
 		return (
-            <View style={{paddingTop: this.state.statusBarHeight }}>
+			<View style={{ paddingBottom: this.state.hackHeight }}>
 				<MapView style={styles.map}
 					provider="google"
 					showsUserLocation={true}
@@ -32,8 +36,8 @@ export default class TestProject2 extends Component {
 					loadingEnabled={true}
 					toolbarEnabled={true}
 					zoomEnabled={true}
-                    rotateEnabled={true}
-                    zoomControlEnabled={true}
+					rotateEnabled={true}
+					zoomControlEnabled={true}
 
 					initialRegion={{
 						latitude: 37.78825,
@@ -42,6 +46,11 @@ export default class TestProject2 extends Component {
 						longitudeDelta: 0.0421,
 					}}
 				/>
+				<TouchableOpacity >
+					<View style={styles.listItem}>
+						<Text style={styles.name}>Test</Text>
+					</View>
+				</TouchableOpacity>
 			</View>
 		);
 	};
@@ -49,23 +58,32 @@ export default class TestProject2 extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-		...StyleSheet.absoluteFillObject,
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'stretch',
-		backgroundColor: 'gray',
-	},
-	map: {
 		...StyleSheet.absoluteFillObject
 	},
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+	map: {
+		height: 200
+	},
+	welcome: {
+		fontSize: 20,
+		textAlign: 'center',
+		margin: 10,
+	},
+	instructions: {
+		textAlign: 'center',
+		color: '#333333',
+		marginBottom: 5,
+	},
+	listItem: {
+		backgroundColor: '#EEEEEE',
+		padding: 12,
+		marginBottom: 1,
+		flexDirection: 'row',
+		alignItems: "center"
+	},
+	name: {
+		paddingLeft: 12,
+		color: '#666',
+		fontWeight: 'bold',
+		fontSize: 20
+	}
 });

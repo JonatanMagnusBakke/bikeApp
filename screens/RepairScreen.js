@@ -26,15 +26,9 @@ export default class RepairScreen extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-      <Text>This is the </Text>
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Location')}>
           <View style={styles.listItem}>
           <Text style={styles.name}>Next</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('Test')}>
-          <View style={styles.listItem}>
-          <Text style={styles.name}>Test</Text>
           </View>
         </TouchableOpacity>
       </ScrollView>
@@ -50,12 +44,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   listItem: {
-    backgroundColor: '#EEEEEE',
-    padding: 12,
-    marginBottom: 1,
-    flexDirection: 'row',
-    alignItems: "center"
-},
+    marginTop:10,
+    paddingTop:15,
+    paddingBottom:15,
+    marginLeft:30,
+    marginRight:30,
+    backgroundColor:'#EEEEEE',
+    borderRadius:20,
+    borderWidth: 1,
+    borderColor: '#fff'
+  },
 name: {
   paddingLeft: 12,
   color: '#666',
