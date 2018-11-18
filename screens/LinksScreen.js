@@ -7,17 +7,19 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Button
 } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 
 export default class LinksScreen extends React.Component {
   static navigationOptions = {
-    title: 'My Profile',
+    title: 'My Profile'
+    
   };
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Text style={styles.headerStyle}>Morgan Freeman</Text>
         <Image
           style={styles.fileImage}
@@ -46,7 +48,14 @@ export default class LinksScreen extends React.Component {
           </View>
         </TouchableOpacity>
 
-      </View>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
+          <View style={styles.Logout}>
+          <Text style={styles.logoutText}>Logout</Text>
+          </View>
+        </TouchableOpacity>
+
+
+      </ScrollView>
     );
   }
 }
@@ -80,6 +89,18 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fff'
   },
+  Logout: {
+    marginTop:10,
+    paddingTop:15,
+    paddingBottom:15,
+    marginLeft:30,
+    marginRight:30,
+    backgroundColor:'#f44259',
+    borderRadius:20,
+    borderWidth: 1,
+    borderColor: '#fff',
+    marginBottom: 100
+  },
   fileImage: {
     alignSelf: 'center',
     height: 200,
@@ -92,5 +113,12 @@ const styles = StyleSheet.create({
     color: '#666',
     fontWeight: 'bold',
     fontSize: 20
+  },
+  logoutText: {
+    paddingLeft: 12,
+    color: '#666',
+    fontWeight: 'bold',
+    fontSize: 20,
+    textAlign: "center"
   }
 });
