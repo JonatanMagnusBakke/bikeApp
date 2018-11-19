@@ -3,6 +3,9 @@ import { Text, TouchableOpacity, View ,StyleSheet} from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
  
 export default class DateTimePickerTester extends Component {
+  static navigationOptions = {
+		title: 'Date and Time',
+	};
   state = {
     isDateTimePickerVisible: false,
     isTimePickerVisible: false,
@@ -20,8 +23,8 @@ export default class DateTimePickerTester extends Component {
  
 
   _handleDatePicked = (date) => {
-    console.log('A date has been picked: ', date.toLocaleDateString());
-    this.setState({dateField: date.toLocaleDateString()})
+    console.log('A date has been picked:', date.toUTCString().slice(4, 11));
+    this.setState({dateField: date.toUTCString().slice(4, 16)})
     this._hideDateTimePicker();
   };
 
@@ -53,6 +56,12 @@ export default class DateTimePickerTester extends Component {
           mode='time'
           is24Hour={true}
         />
+
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Picture')}>
+						<View style={styles.listItem}>
+							<Text style={styles.name}>Next</Text>
+						</View>
+					</TouchableOpacity>
       </View>
     );
   }

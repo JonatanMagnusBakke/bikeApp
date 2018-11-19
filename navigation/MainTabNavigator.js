@@ -8,11 +8,13 @@ import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import LocationScreen from '../screens/Repair/LocationScreen';
 import DateTimeScreen from '../screens/Repair/DateTimeScreen';
+import PictureScreen from '../screens/Repair/PictureScreen'
 
 const HomeStack = createStackNavigator({
   Home: RepairScreen,
   Location: LocationScreen,
-  DateTime: DateTimeScreen
+  DateTime: DateTimeScreen,
+  Picture: PictureScreen
 });
 
 HomeStack.navigationOptions = {
