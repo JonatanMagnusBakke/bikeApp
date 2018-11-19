@@ -7,12 +7,12 @@ import RepairScreen from '../screens/RepairScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import LocationScreen from '../screens/Repair/LocationScreen';
-import TestMap from '../screens/Repair/TestMap';
+import DateTimeScreen from '../screens/Repair/DateTimeScreen';
 
 const HomeStack = createStackNavigator({
   Home: RepairScreen,
   Location: LocationScreen,
-  Test: TestMap
+  DateTime: DateTimeScreen
 });
 
 HomeStack.navigationOptions = {

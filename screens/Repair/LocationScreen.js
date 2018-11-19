@@ -13,9 +13,9 @@ import MapView from 'react-native-maps';
 const { width, height } = Dimensions.get('window');
 
 export default class TestProject2 extends Component {
-    static navigationOptions = {
-        title: 'Location',
-      };
+	static navigationOptions = {
+		title: 'Location',
+	};
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -29,42 +29,42 @@ export default class TestProject2 extends Component {
 	}
 	render() {
 		return (
-            <View style={styles.container}>
-                <View style={{ paddingBottom: this.state.hackHeight }}>
-				<MapView style={styles.map}
-					provider="google"
-					showsUserLocation={true}
-					showsMyLocationButton={true}
-					showsCompass={true}
-					followsUserLocation={true}
-					loadingEnabled={true}
-					toolbarEnabled={true}
-					zoomEnabled={true}
-					rotateEnabled={true}
-					zoomControlEnabled={true}
+			<View style={styles.container}>
+				<View style={{ paddingBottom: this.state.hackHeight }}>
+					<MapView style={styles.map}
+						provider="google"
+						showsUserLocation={true}
+						showsMyLocationButton={true}
+						showsCompass={true}
+						followsUserLocation={true}
+						loadingEnabled={true}
+						toolbarEnabled={true}
+						zoomEnabled={true}
+						rotateEnabled={true}
+						zoomControlEnabled={true}
 
-					initialRegion={{
-						latitude: 37.78825,
-						longitude: -122.4324,
-						latitudeDelta: 0.0922,
-						longitudeDelta: 0.0421,
-					}}
-				/>
-				<TouchableOpacity >
-					<View style={styles.listItem}>
-						<Text style={styles.name}>Next</Text>
-					</View>
-				</TouchableOpacity>
+						initialRegion={{
+							latitude: 37.78825,
+							longitude: -122.4324,
+							latitudeDelta: 0.0922,
+							longitudeDelta: 0.0421,
+						}}
+					/>
+					<TouchableOpacity onPress={() => this.props.navigation.navigate('DateTime')}>
+						<View style={styles.listItem}>
+							<Text style={styles.name}>Next</Text>
+						</View>
+					</TouchableOpacity>
+				</View>
 			</View>
-            </View>
-			
+
 		);
 	};
 }
 
 const styles = StyleSheet.create({
 	container: {
-        backgroundColor: '#fff',
+		backgroundColor: '#fff',
 	},
 	map: {
 		height: 200
@@ -84,16 +84,16 @@ const styles = StyleSheet.create({
 		color: '#666',
 		fontWeight: 'bold',
 		fontSize: 20
-    },
-    listItem: {
-        marginTop:10,
-        paddingTop:15,
-        paddingBottom:15,
-        marginLeft:30,
-        marginRight:30,
-        backgroundColor:'#EEEEEE',
-        borderRadius:20,
-        borderWidth: 1,
-        borderColor: '#fff'
-      },
+	},
+	listItem: {
+		marginTop: 10,
+		paddingTop: 15,
+		paddingBottom: 15,
+		marginLeft: 30,
+		marginRight: 30,
+		backgroundColor: '#EEEEEE',
+		borderRadius: 20,
+		borderWidth: 1,
+		borderColor: '#fff'
+	},
 });
